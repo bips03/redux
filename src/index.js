@@ -1,5 +1,5 @@
 import store from "./store";
-console.log(store);
+import { add, sub } from './actions'
 
 const unsubscribe = store.subscribe(() => {
   let res = "<li>";
@@ -10,20 +10,13 @@ const unsubscribe = store.subscribe(() => {
   res += "</li>";
   console.log(res)
   document.getElementById("app").innerHTML = res;
+  console.log(store.getState());
 });
 
-store.dispatch({
-  type: "add",
-  payload: {
-    name: "item 1",
-  },
-});
+store.dispatch(add('item1'));
 
-store.dispatch({
-    type: "add",
-    payload: {
-      name: "item 2",
-    },
-  });
+store.dispatch(add('item2'));
+
+store.dispatch(sub(2))
 
   unsubscribe()
